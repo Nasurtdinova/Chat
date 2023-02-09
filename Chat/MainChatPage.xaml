@@ -20,12 +20,12 @@
         </TextBlock>
         <StackPanel Grid.Row="1">
             <TextBlock>Your open chatrooms</TextBlock>
-            <ListView Name="lvChats" SelectionChanged="lvChats_SelectionChanged">
+            <ListView Name="lvChats" Width="500" SelectionChanged="lvChats_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
                             <GridViewColumn  Header="Topic" DisplayMemberBinding="{Binding Topic}"></GridViewColumn>
-                            <GridViewColumn Header="Lost message" DisplayMemberBinding="{Binding LastMessage, ConverterCulture='ru'}"></GridViewColumn>
+                            <GridViewColumn Header="Last message" DisplayMemberBinding="{Binding LastMessage, StringFormat='dd.MM.yyyy hh:mm'}"></GridViewColumn>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

@@ -61,12 +61,16 @@ namespace Chat
                     Connection.Entity.SaveChanges();
                 }
             }
-
         }
 
         private void btnChangeTopic_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ChangeTopicPage(CurrentChatroom));
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

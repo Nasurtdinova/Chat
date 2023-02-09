@@ -44,7 +44,9 @@
             </ListView.ItemTemplate>
         </ListView>
         <TextBox Grid.Row="1" Width="300" Name="tbInputMessage"></TextBox>
-        <Button Name="btnSend" Grid.Column="1" Grid.Row="1" Click="btnSend_Click">Send</Button>
-        
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <Button Name="btnSend" Click="btnSend_Click">Send</Button>
+            <Button Name="btnBack" Click="btnBack_Click">Back</Button>
+        </StackPanel>
     </Grid>
 </Page>
