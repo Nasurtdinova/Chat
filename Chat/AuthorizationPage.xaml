@@ -21,9 +21,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Username"></TextBlock>
         <TextBlock Text="Password" Grid.Row="1"></TextBlock>
-        <CheckBox Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Remember me</CheckBox>
+        <CheckBox Name="cbRemember" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Remember me</CheckBox>
         <TextBox Name="tbUsername" Grid.Column="1"></TextBox>
-        <TextBox Name="tbPassword" Grid.Column="1" Grid.Row="1"></TextBox>
+        <PasswordBox Name="tbPassword" Grid.Column="1" Grid.Row="1"></PasswordBox>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button Name="btnOk" Click="btnOk_Click">Ok</Button>
             <Button Name="btnCansel" Click="btnCansel_Click">Cansel</Button>

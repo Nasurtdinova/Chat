@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a28f098f57204312a0277acbf8503b94" Name="Diagram1">
+        <EntityTypeShape EntityType="ChatGuzelModel.ChatMessage" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="ChatGuzelModel.Chatroom" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="ChatGuzelModel.Department" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="ChatGuzelModel.Employee" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="ChatGuzelModel.EmployeeChatroom" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="ChatGuzelModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" />
+        <AssociationConnector Association="ChatGuzelModel.FK_ChatMessage_Chatroom" />
+        <AssociationConnector Association="ChatGuzelModel.FK_ChatMessage_Employee" />
+        <AssociationConnector Association="ChatGuzelModel.FK_EmployeeChatroom_Chatroom" />
+        <AssociationConnector Association="ChatGuzelModel.FK_Employee_Department" />
+        <AssociationConnector Association="ChatGuzelModel.FK_EmployeeChatroom_Employee" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

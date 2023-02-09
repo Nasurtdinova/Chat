@@ -1,0 +1,39 @@
+﻿<Page x:Class="Chat.MainChatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Chat"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainChatPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock>
+            <Run>Hello</Run>
+            <Run Name="tbName"></Run>
+        </TextBlock>
+        <StackPanel Grid.Row="1">
+            <TextBlock>Your open chatrooms</TextBlock>
+            <ListView Name="lvChats" SelectionChanged="lvChats_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn  Header="Topic" DisplayMemberBinding="{Binding Topic}"></GridViewColumn>
+                            <GridViewColumn Header="Lost message" DisplayMemberBinding="{Binding LastMessage, ConverterCulture='ru'}"></GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Name="btnFinder" Click="btnFinder_Click">Employee finder</Button>
+            <Button Name="btnClose" Click="btnClose_Click">Close</Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -20,9 +20,11 @@ namespace Chat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Employee CurrentUser { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            mainFrame.Navigate(new AuthorizationPage());
         }
     }
 }

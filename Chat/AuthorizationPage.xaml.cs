@@ -20,11 +20,31 @@ namespace Chat
         public AuthorizationPage()
         {
             InitializeComponent();
+            tbUsername.Text = Properties.Settings.Default.login;
+            tbPassword.Password = Properties.Settings.Default.password;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-
+            var user = DataAccess.GetEmployees().Where(a=>a.Username == tbUsername.Text && a.Password == tbPassword.Password).FirstOrDefault();
+            if (user != null)
+            {
+                if (cbRemember.IsChecked == true)
+                {
+                    Properties.Settings.Default.login = tbUsername.Text;
+                    Properties.Settings.Default.password = tbPassword.Password;
+                }
+                else
+                {
+                    Properties.Settings.Default.password = String.Empty;
+                    Properties.Settings.Default.login = String.Empty;
+                }
+                Properties.Settings.Default.Save();
+                MainWindow.CurrentUser = user;
+                NavigationService.Navigate(new MainChatPage());
+            }
+            else
+                MessageBox.Show("Invalid login or password");
         }
 
         private void btnCansel_Click(object sender, RoutedEventArgs e)
