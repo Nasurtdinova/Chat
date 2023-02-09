@@ -26,6 +26,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button Name="btnAddUser" Click="btnAddUser_Click"> Add user</Button>
+            <Button Name="btnChangeTopic" Click="btnChangeTopic_Click">Change Topic</Button>
+            <Button Name="btnLeaveChatroom" Click="btnLeaveChatroom_Click">Leave Chatroom</Button>
         </StackPanel>
       
         <ListView Name="lvMessages" Grid.Column="1">
@@ -33,7 +35,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock>
-                            <Run Text="{Binding Date, StringFormat='dd.MM.yyyy'}"></Run>
+                            <Run Text="{Binding Date, StringFormat='dd.MM.yyyy hh:mm'}"></Run>
                             <Run Text="{Binding Employee.Name}"></Run>
                             <Run Text="{Binding Message}"></Run>
                         </TextBlock>
@@ -41,7 +43,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBox Grid.Row="1" Width="300"></TextBox>
+        <TextBox Grid.Row="1" Width="300" Name="tbInputMessage"></TextBox>
         <Button Name="btnSend" Grid.Column="1" Grid.Row="1" Click="btnSend_Click">Send</Button>
         
     </Grid>

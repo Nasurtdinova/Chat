@@ -29,12 +29,44 @@ namespace Chat
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(tbInputMessage.Text))
+            {
+                ChatMessage chat = new ChatMessage()
+                {
+                    Chatroom = CurrentChatroom,
+                    Date = DateTime.Now,
+                    Employee = MainWindow.CurrentUser,
+                    Message = tbInputMessage.Text
+                };
+                Connection.Entity.ChatMessage.Add(chat);
+                Connection.Entity.SaveChanges();
+                lvMessages.ItemsSource = Connection.Entity.ChatMessage.ToList().Where(a => a.Chatroom == CurrentChatroom).OrderBy(a => a.Date);
+                tbInputMessage.Text = String.Empty;
+            }
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new FinderEmployeePage(CurrentChatroom));
+        }
+
+        private void btnLeaveChatroom_Click(object sender, RoutedEventArgs e)
+        {
+            var chatroom = DataAccess.GetEmployeeChatrooms().Where(a => a.Chatroom == CurrentChatroom && a.Employee == MainWindow.CurrentUser).FirstOrDefault();
+            if (chatroom != null)
+            {
+                if (MessageBox.Show("Вы точно хотите покинуть эту комнату?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Connection.Entity.EmployeeChatroom.Remove(chatroom);
+                    Connection.Entity.SaveChanges();
+                }
+            }
+
+        }
+
+        private void btnChangeTopic_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChangeTopicPage(CurrentChatroom));
         }
     }
 }
