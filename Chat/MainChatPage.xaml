@@ -32,6 +32,7 @@
             </ListView>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Name="btnCreateChat" Click="btnCreateChat_Click">Create chat</Button>
             <Button Name="btnFinder" Click="btnFinder_Click">Employee finder</Button>
             <Button Name="btnClose" Click="btnClose_Click">Close</Button>
         </StackPanel>

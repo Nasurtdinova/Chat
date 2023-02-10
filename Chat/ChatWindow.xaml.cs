@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace Chat
 {
-    public partial class ChatPage : Window
+    public partial class ChatWindow : Window
     {
         public Chatroom CurrentChatroom { get; set; }
-        public ChatPage(Chatroom selectedChatroom)
+        public ChatWindow(Chatroom selectedChatroom)
         {
             InitializeComponent();
             if (selectedChatroom != null)
@@ -48,7 +48,13 @@ namespace Chat
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-           Close();
+            FinderEmployeePage win = new FinderEmployeePage(CurrentChatroom);
+            win.Show();
+            win.Closed += (s, eventarg) =>
+            {
+                lvMessages.ItemsSource = Connection.Entity.ChatMessage.ToList().Where(a => a.Chatroom == CurrentChatroom).OrderBy(a => a.Date);
+                lvEmployees.ItemsSource = DataAccess.GetEmployeeChatrooms().Where(a => a.Chatroom == CurrentChatroom).Select(a => a.Employee);
+            };
         }
 
         private void btnLeaveChatroom_Click(object sender, RoutedEventArgs e)

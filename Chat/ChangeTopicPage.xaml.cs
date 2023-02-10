@@ -29,9 +29,30 @@ namespace Chat
         {
             if (!string.IsNullOrEmpty(tbChange.Text))
             {
-                CurrentChatroom.Topic = tbChange.Text;
-                Connection.Entity.SaveChanges();
-                Close();
+                if (CurrentChatroom != null)
+                {
+                    CurrentChatroom.Topic = tbChange.Text;
+                    Connection.Entity.SaveChanges();
+                    Close();
+                }
+                else
+                {
+                    Chatroom chatroom = new Chatroom()
+                    {
+                        Topic = tbChange.Text,
+                    };
+                    Connection.Entity.Chatroom.Add(chatroom);
+                    Connection.Entity.SaveChanges();
+
+                    EmployeeChatroom emplchat = new EmployeeChatroom()
+                    {
+                        Employee = MainWindow.CurrentUser,
+                        Chatroom = chatroom
+                    };
+                    Connection.Entity.EmployeeChatroom.Add(emplchat);
+                    Connection.Entity.SaveChanges();
+                    Close();
+                }
             }
         }  
     }

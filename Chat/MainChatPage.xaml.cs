@@ -31,14 +31,33 @@ namespace Chat
 
         private void btnFinder_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FinderEmployeePage(null));
+            FinderEmployeePage finderEmployee = new FinderEmployeePage(null);
+            finderEmployee.Show();
+            finderEmployee.Closed += (s, eventarg) =>
+            {
+                lvChats.ItemsSource = DataAccess.GetEmployeeChatrooms().Where(a => a.IdEmployee == MainWindow.CurrentUser.Id).Select(a => a.Chatroom);
+            };
         }
 
         private void lvChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var a = lvChats.SelectedItem as Chatroom;
-            ChatPage win = new ChatPage(a);
+            var chatroom = lvChats.SelectedItem as Chatroom;
+            ChatWindow win = new ChatWindow(chatroom);
             win.Show();
+            win.Closed += (s, eventarg) =>
+            {
+                lvChats.ItemsSource = DataAccess.GetEmployeeChatrooms().Where(a => a.IdEmployee == MainWindow.CurrentUser.Id).Select(a => a.Chatroom);
+            };
+        }
+
+        private void btnCreateChat_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTopicPage win = new ChangeTopicPage(null);
+            win.Show();
+            win.Closed += (a, eventarg) =>
+            {
+                lvChats.ItemsSource = DataAccess.GetEmployeeChatrooms().Where(b => b.IdEmployee == MainWindow.CurrentUser.Id).Select(b => b.Chatroom);
+            };
         }
     }
 }

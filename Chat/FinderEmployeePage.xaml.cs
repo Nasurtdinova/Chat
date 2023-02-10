@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Chat
 {
-    public partial class FinderEmployeePage : Page
+    public partial class FinderEmployeePage : Window
     {
         public Chatroom CurrentChatroom { get; set; }
         public List<Employee> Employees { get; set; }
@@ -59,7 +59,7 @@ namespace Chat
             if (CurrentChatroom != null)
             {
                 var a = lvEmployees.SelectedItem as Employee;
-                if (DataAccess.GetEmployeeChatrooms().Where(b => b.Employee == a).Count() == 0)
+                if (DataAccess.GetEmployeeChatrooms().Where(b => b.Employee == a && b.Chatroom == CurrentChatroom).Count() == 0)
                 {
                     EmployeeChatroom empl = new EmployeeChatroom()
                     {
@@ -68,17 +68,11 @@ namespace Chat
                     };
                     Connection.Entity.EmployeeChatroom.Add(empl);
                     Connection.Entity.SaveChanges();
-                    NavigationService.Navigate(new ChatPage(CurrentChatroom));
+                    Close();
                 }
                 else
                     MessageBox.Show("Этот пользователь уже существует в этом чате");
             }
-
-        }
-
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }
