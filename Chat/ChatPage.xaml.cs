@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Chat
 {
-    public partial class ChatPage : Page
+    public partial class ChatPage : Window
     {
         public Chatroom CurrentChatroom { get; set; }
         public ChatPage(Chatroom selectedChatroom)
@@ -23,6 +23,7 @@ namespace Chat
             InitializeComponent();
             if (selectedChatroom != null)
                 CurrentChatroom = selectedChatroom;
+            Title = $"Topic: {CurrentChatroom.Topic}";
             lvMessages.ItemsSource = Connection.Entity.ChatMessage.ToList().Where(a => a.Chatroom == selectedChatroom).OrderBy(a => a.Date);
             lvEmployees.ItemsSource = DataAccess.GetEmployeeChatrooms().Where(a => a.Chatroom == selectedChatroom).Select(a=>a.Employee);
         }
@@ -47,7 +48,7 @@ namespace Chat
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FinderEmployeePage(CurrentChatroom));
+           Close();
         }
 
         private void btnLeaveChatroom_Click(object sender, RoutedEventArgs e)
@@ -59,18 +60,24 @@ namespace Chat
                 {
                     Connection.Entity.EmployeeChatroom.Remove(chatroom);
                     Connection.Entity.SaveChanges();
+                    Close();
                 }
             }
         }
 
         private void btnChangeTopic_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ChangeTopicPage(CurrentChatroom));
+            ChangeTopicPage win = new ChangeTopicPage(CurrentChatroom);
+            win.Show();
+            win.Closed += (a, eventarg) =>
+            {
+                Title = $"Topic: {CurrentChatroom.Topic}";
+            };
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            Close();
         }
     }
 }

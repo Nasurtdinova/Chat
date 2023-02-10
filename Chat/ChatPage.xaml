@@ -1,4 +1,4 @@
-﻿<Page x:Class="Chat.ChatPage"
+﻿<Window x:Class="Chat.ChatPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -25,9 +25,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Name="btnAddUser" Click="btnAddUser_Click"> Add user</Button>
-            <Button Name="btnChangeTopic" Click="btnChangeTopic_Click">Change Topic</Button>
-            <Button Name="btnLeaveChatroom" Click="btnLeaveChatroom_Click">Leave Chatroom</Button>
+            <Button Template="{DynamicResource ButtonTemplate}" Name="btnAddUser" Click="btnAddUser_Click"> Add user</Button>
+            <Button Template="{DynamicResource ButtonTemplate}" Name="btnChangeTopic" Click="btnChangeTopic_Click">Change Topic</Button>
+            <Button Template="{DynamicResource ButtonTemplate}" Name="btnLeaveChatroom" Click="btnLeaveChatroom_Click">Leave Chatroom</Button>
         </StackPanel>
       
         <ListView Name="lvMessages" Grid.Column="1">
@@ -45,8 +45,8 @@
         </ListView>
         <TextBox Grid.Row="1" Width="300" Name="tbInputMessage"></TextBox>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-            <Button Name="btnSend" Click="btnSend_Click">Send</Button>
-            <Button Name="btnBack" Click="btnBack_Click">Back</Button>
+            <Button Template="{DynamicResource ButtonTemplate}" Name="btnSend" Click="btnSend_Click">Send</Button>
+            <Button Template="{DynamicResource ButtonTemplate}" Name="btnBack" Click="btnBack_Click">Back</Button>
         </StackPanel>
     </Grid>
-</Page>
+</Window>

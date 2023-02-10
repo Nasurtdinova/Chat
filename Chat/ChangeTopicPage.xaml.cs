@@ -15,10 +15,7 @@ using System.Windows.Shapes;
 
 namespace Chat
 {
-    /// <summary>
-    /// Логика взаимодействия для ChangeTopicPage.xaml
-    /// </summary>
-    public partial class ChangeTopicPage : Page
+    public partial class ChangeTopicPage : Window
     {
         public Chatroom CurrentChatroom { get; set; }
         public ChangeTopicPage(Chatroom selectedChatroom)
@@ -34,7 +31,8 @@ namespace Chat
             {
                 CurrentChatroom.Topic = tbChange.Text;
                 Connection.Entity.SaveChanges();
+                Close();
             }
-        }
+        }  
     }
 }

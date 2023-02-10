@@ -25,8 +25,9 @@
         <TextBox Name="tbUsername" Grid.Column="1"></TextBox>
         <PasswordBox Name="tbPassword" Grid.Column="1" Grid.Row="1"></PasswordBox>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button Name="btnOk" Click="btnOk_Click">Ok</Button>
+            <Button Background="LightBlue" Name="btnOk" Click="btnOk_Click">Ok</Button>
             <Button Name="btnCansel" Click="btnCansel_Click">Cansel</Button>
+            <Button Name="btnRegistr" Click="btnRegistr_Click">Registr</Button>
         </StackPanel>
     </Grid>
 </Page>

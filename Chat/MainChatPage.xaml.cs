@@ -37,7 +37,8 @@ namespace Chat
         private void lvChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var a = lvChats.SelectedItem as Chatroom;
-            NavigationService.Navigate(new ChatPage(a));
+            ChatPage win = new ChatPage(a);
+            win.Show();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +27,7 @@ namespace Chat
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            var user = DataAccess.GetEmployees().Where(a=>a.Username == tbUsername.Text && a.Password == tbPassword.Password).FirstOrDefault();
+            var user = DataAccess.GetEmployees().Where(a=>a.Username == tbUsername.Text && a.Password == DataAccess.HashPassword(tbPassword.Password)).FirstOrDefault();
             if (user != null)
             {
                 if (cbRemember.IsChecked == true)
@@ -50,6 +51,11 @@ namespace Chat
         private void btnCansel_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void btnRegistr_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }

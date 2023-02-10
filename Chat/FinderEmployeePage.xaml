@@ -36,6 +36,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <Button Name="btnBack" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Click="btnBack_Click">Back</Button>
+        <Button Template="{DynamicResource ButtonTemplate}" Name="btnBack" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Click="btnBack_Click">Back</Button>
     </Grid>
 </Page>
